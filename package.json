@@ -1,0 +1,25 @@
+{
+  "name": "ramda-extensions",
+  "version": "0.0.0",
+  "description": "Utility belt that extends Ramda.js and Ember.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mediasuitenz/ramda-extensions.git"
+  },
+  "keywords": [
+    "ramda"
+  ],
+  "author": "patrick.nilsen.walsh@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mediasuitenz/ramda-extensions/issues"
+  },
+  "homepage": "https://github.com/mediasuitenz/ramda-extensions#readme",
+  "devDependencies": {
+    "ramda": "^0.18.0"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "name": "ramda-extensions",
   "main": "index.js",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/mediasuitenz/ramda-extensions",
   "authors": [
     "Patrick Walsh <patrick.nilsen.walsh@gmail.com>"

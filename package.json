@@ -1,6 +1,6 @@
 {
   "name": "ramda-extensions",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Utility belt that extends Ramda.js and Ember.js",
   "main": "index.js",
   "scripts": {

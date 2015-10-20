@@ -24,11 +24,11 @@
 
   Re.toArray = R.invoker(0, 'toArray');
   Re.toJSON = R.invoker(0, 'toJSON');
-  Re.toNumber = x => Number(x);
-  Re.toString = x => Number(x);
+  Re.toNumber = Number;
+  Re.toString = String;
 
   // @sig a -> (a -> b) -> b
-  Re.applyTo = R.curryN(2, (obj, fn) => fn(obj));
+  Re.applyTo = R.curryN(2, function(obj, fn) { return fn(obj) });
   // @sig a -> [(a -> b)] -> [b]
   Re.rmap = R.curryN(2, function rmap (obj, fns) {
     return R.map(Re.applyTo(obj), fns)
@@ -43,13 +43,19 @@
   });
 
   // @sig a -> a
-  Re.log = Re.effect(val => console.log(val));
+  Re.log = Re.effect(function(val) {console.log(val)});
   // @sig (a -> b) -> a -> a
-  Re.logWith = fn => Re.effect(val => console.log(fn(val)));
+  Re.logWith = function(fn) {
+    return Re.effect(function(val) {console.log(fn(val))});
+  };
   // @sig String -> (a -> a)
-  Re.trace = (msg) => Re.effect(val => console.log(msg, val));
+  Re.trace = function(msg) {
+    return Re.effect(function(val) {console.log(msg, val)});
+  };
   // @sig String -> (a -> b) -> (a -> a)
-  Re.traceWith = (msg, fn) => Re.effect(val => console.log(msg, fn(val)));
+  Re.traceWith = function(msg, fn) {
+    return Re.effect(function(val) {console.log(msg, fn(val))});
+  };
 
 
   /**
@@ -80,7 +86,7 @@
   rsvp.parallelHash = R.curryN(2, function parallelHash (transformations, object) {
     return R.compose(
       Ember.RSVP.hash,
-      R.mapObj(fn => fn(object))
+      R.mapObj(function(fn) {return fn(object)})
     )(transformations)
   });
 
@@ -140,7 +146,7 @@
     E.get = E.prop;
 
     // @sig [k] -> {k: v} -> [v]
-    E.props = R.curryN(2, (props, obj) => {
+    E.props = R.curryN(2, function props(props, obj) {
       return R.compose(
         Re.rmap(obj),
         R.map(E.get)
@@ -183,7 +189,7 @@
 
     // @sig a -> b -> Promise(b)
     E.linkRelated = R.curryN(2, function linkRelated (parent, related) {
-      return rsvp.effect(b => parent.linkRelated(b), related)
+      return rsvp.effect(function(b) {return parent.linkRelated(b)}, related)
     });
     // @sig a -> [b] -> PromiseArray([b])
     E.linkManyRelated = R.curryN(2, function linkManyRelated (theOne, theMany) {
@@ -192,7 +198,7 @@
 
     // @sig String -> a -> b -> Promise(b)
     E.linkCustomRelated = R.curryN(3, function linkCustomRelated (relatedName, a, b) {
-      return rsvp.effect(b => a.linkRelated(b, relatedName), b)
+      return rsvp.effect(function(b) {return a.linkRelated(b, relatedName)}, b)
     });
 
     // @sig String -> a -> PromiseArray([b])

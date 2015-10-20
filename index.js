@@ -23,6 +23,7 @@
   Re.mergeRight = R.flip(R.merge);
 
   Re.toArray = R.invoker(0, 'toArray');
+  Re.toJSON = R.invoker(0, 'toJSON');
   Re.toNumber = x => Number(x);
   Re.toString = x => Number(x);
 
@@ -41,12 +42,14 @@
     return x
   });
 
+  // @sig a -> a
+  Re.log = Re.effect(val => console.log(val));
+  // @sig (a -> b) -> a -> a
+  Re.logWith = fn => Re.effect(val => console.log(fn(val)));
   // @sig String -> (a -> a)
   Re.trace = (msg) => Re.effect(val => console.log(msg, val));
   // @sig String -> (a -> b) -> (a -> a)
   Re.traceWith = (msg, fn) => Re.effect(val => console.log(msg, fn(val)));
-  Re.log = Re.trace;
-  Re.logWith = Re.traceWith;
 
 
   /**
@@ -135,6 +138,14 @@
     // @sig k -> Object -> v
     E.prop = R.flip(Ember.get);
     E.get = E.prop;
+
+    // @sig [k] -> {k: v} -> [v]
+    E.props = R.curryN(2, (props, obj) => {
+      return R.compose(
+        Re.rmap(obj),
+        R.map(E.get)
+      )(props)
+    });
 
     // @sig k -> [Object] -> [v]
     E.pluck = R.curryN(2, function pluck (p, list) {

@@ -10,6 +10,7 @@
   var Re = {};
 
   // @sig a -> Boolean
+  Re.isUndefined = (x) => typeof x === 'undefined';
   Re.isNotEmpty = R.complement(R.isEmpty);
   Re.isNotNil = R.complement(R.isNil);
   Re.isEmptyObj = R.compose(R.isEmpty, Object.keys);
@@ -145,6 +146,13 @@
     E.prop = R.flip(Ember.get);
     E.get = E.prop;
 
+    E.propOr = R.curryN(3, function propOr (val, p, obj) {
+      if (Re.isNilOrEmptyObj(obj)) return val;
+      var result = E.get(p, obj);
+      return Re.isUndefined(result) ? val : result;
+    })
+    E.getOr = E.propOr;
+
     // @sig [k] -> {k: v} -> [v]
     E.props = R.curryN(2, function props(props, obj) {
       return R.compose(
@@ -175,8 +183,10 @@
 
     /* Custom Ember methods */
 
-    // @sig DS.Model -> Ember.RSVP.Promise
+    // @sig DS.Model -> Promise(DS.Model)
     E.save = R.invoker(0, 'save');
+    // @sig [DS.Model] -> Promise([DS.Model])
+    E.saveAll = rsvp.all(R.map(E.save))
     // @sig DS.Model -> DS.Model
     E.clone = R.invoker(0, 'clone');
     // @sig a -> * -> a

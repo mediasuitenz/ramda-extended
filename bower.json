@@ -24,7 +24,7 @@
     "test",
     "tests"
   ],
-  "dependencies": {
+  "devDependencies": {
     "ramda": "~0.18.0"
   }
 }

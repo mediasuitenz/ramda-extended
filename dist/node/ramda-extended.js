@@ -9649,6 +9649,7 @@
     const all = RSVP.all;
 
     var rsvp = {};
+    rsvp.RSVP = RSVP;
 
     rsvp.compose = R.composeP;
     rsvp.pipe = R.pipeP;

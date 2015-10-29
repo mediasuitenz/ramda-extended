@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "Extend Ramda with extra capabilities, including Ember.js support.",
   "main": "dist/ramda-extended.js",
-  "readme": "README.md",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

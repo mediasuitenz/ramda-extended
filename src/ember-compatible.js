@@ -4,91 +4,10 @@
 
 (function () {
   var root = this;
-  var R = require('./ramda-extended');
-
-  /**
-   * rsvp is a collection promise-enabled control flow functions
-   */
-
-  var rsvp = {};
-  R.rsvp = rsvp;
-
-  rsvp.compose = R.composeP;
-  rsvp.pipe = R.pipeP;
-
-  // @sig [(a -> b)] -> a -> [b]
-  rsvp.parallel = R.curryN(2, function parallel (fns, x) {
-    return rsvp.all(R.juxt(fns))(x)
-  });
-
-  /**
-   * Identical to rsvp.parallel, except that instead of a list,
-   * you pass an object with the functions as the keys
-   *
-   * @func
-   * @sig {k: (a -> b)} -> a -> Promise({k: b})
-   * @param {Object} transformations The object specifying transformation functions to invoke in parallel
-   * @param {Object} object The object to be transformed
-   * @returns {Ember.RSVP.hash} The results of invoking the transformations with the object
-   *
-   */
-  rsvp.parallelHash = R.curryN(2, function parallelHash (transformations, object) {
-    return R.compose(
-        Ember.RSVP.hash,
-        R.mapObj(function (fn) {return fn(object)})
-    )(transformations)
-  });
-
-  // Wraps the result of calling fn in Ember.RSVP.all
-  rsvp.all = R.curryN(1, function all (fn) {
-    return R.compose(
-        Ember.RSVP.all,
-        fn
-    )
-  });
-
-  // Wraps the result of calling fn in Ember.RSVP.hash
-  rsvp.hash = R.curryN(1, function hash (fn) {
-    return R.compose(
-        Ember.RSVP.hash,
-        fn
-    )
-  });
-
-  // @sig (a -> b) -> [a] -> Promise([b])
-  rsvp.map = R.curryN(2, function map (fn, list) {
-    return rsvp.all(R.map(fn))(list)
-  });
-
-  /**
-   * A version of fo;ter that works with composeP
-   * @sig (* -> *) -> * -> Ember.RSVP.all([*])
-   * @function
-   * @param {Function} fn a function to apply to all items in list
-   * @param {Array} list an array or items to apply the function to
-   */
-  rsvp.filter = R.curryN(2, function filter (fn, list) {
-    return rsvp.all(R.filter(fn))(list)
-  });
-
-  /**
-   * Applies fn to x, then returns x.
-   * Because the results of fn are not returned, only the side effects of fn are relevant.
-   * @sig (a -> b) -> a -> b
-   * @param {Function} fn
-   * @param {*} x
-   * @returns {Ember.RSVP.Promise} Resolves to x
-   */
-  rsvp.effect = R.curryN(2, function effect (fn, x) {
-    return fn(x).then(R.always(x))
-  });
-  //}
+  var R = require('./base');
+  R.rsvp = require('./rsvp')(R, Ember.RSVP);
 
   ///* Ember-specific functions */
-  //if (Ember) {
-  //var E = {};
-  //R.E = E;
-  //R.Ember = E;
 
   /* Re-implement Ramda functions to work with Ember getters/setters*/
   // @sig k -> Object -> v

@@ -2,21 +2,21 @@
 
 SRC="src"
 DIST="dist"
-EMBER="$DIST/emberjs-compatible"
-BROWSER="$DIST/browser-compatible"
+EMBER="$DIST/ember"
+NODE="$DIST/node"
 
 FNAME="ramda-extended.js"
 FNAME_MIN="ramda-extended.min.js"
 
 [ ! -d "$DIST" ] && mkdir "$DIST"
 [ ! -d "$EMBER" ] && mkdir "$EMBER"
-[ ! -d "$BROWSER" ] && mkdir "$BROWSER"
+[ ! -d "$NODE" ] && mkdir "$NODE"
 
-cp "$SRC/$FNAME" "$DIST/$FNAME"
+cp "$SRC/base.js" "$DIST/$FNAME"
 uglifyjs "$DIST/$FNAME" --mangle --keepfnames > "$DIST/$FNAME_MIN"
 
-browserify "$SRC/$FNAME" -s R > "$BROWSER/$FNAME"
-uglifyjs "$BROWSER/$FNAME" --mangle --keepfnames > "$BROWSER/$FNAME_MIN"
-
-browserify "$SRC/ramda-ember.js" -s R > "$EMBER/$FNAME"
+browserify "$SRC/ember-compatible.js" -s R > "$EMBER/$FNAME"
 uglifyjs "$EMBER/$FNAME" --mangle --keepfnames > "$EMBER/$FNAME_MIN"
+
+browserify "$SRC/node-compatible.js" -s R > "$NODE/$FNAME"
+uglifyjs "$NODE/$FNAME" --mangle --keepfnames > "$NODE/$FNAME_MIN"

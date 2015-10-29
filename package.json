@@ -1,6 +1,6 @@
 {
   "name": "ramda-extended",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Extend Ramda with extra capabilities, including Ember.js support.",
   "main": "dist/node/ramda-extended.js",
   "scripts": {

@@ -7,6 +7,8 @@ That means that you do not need to install Ramda separately.
 
 
 ## Using in the browser
+
+**NOTE** This does not include the rsvp namespace.
 `<script src="bower_components/ramda-extended/dist/browser-compatible/ramda-extended.js">`
 
 or 
@@ -17,13 +19,16 @@ or
 
 ## Using in Node
 
+This uses RSVP for the promise-enabled functions to be consistent with Ember.RSVP.
+I don't really like bundling RSVP in the package like this, but idk how to get around it yet. Any ideas?
+
 `npm install --save`
 
 `var R = require('ramda-extended')`
 
 
 ## Using with Ember.js
-This is a work in progress. When using the `ember-compatible/ramda-extended.js` version,
+This is a work in progress. When using the `ember/ramda-extended.js` version,
 the regular R functions like `prop` and `pluck` are re-implemented to use Emberjs getters and setters.
 
 **WARNING: Not all functions have been modified to be Emberjs compatible.** When in doubt,
@@ -35,7 +40,7 @@ that has not been ported yet, then please submit a pull request!
 ```
 // Add to ember-cli-build.js or Brocfile.js
 
-app.import(app.bowerDirectory + '/ramda-extended/dist/ember-compatible/ramda-extended.js')
+app.import(app.bowerDirectory + '/ramda-extended/dist/ember/ramda-extended.js')
 ```
 
 Ember-compatible mode also adds some new namespaces, namely `rsvp` and `Ember`. These add additional

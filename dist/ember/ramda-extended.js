@@ -8068,7 +8068,7 @@
   // @sig DS.Model -> Promise(DS.Model)
   Re.save = R.invoker(0, 'save');
   // @sig [DS.Model] -> Promise([DS.Model])
-  Re.saveAll = rsvp.all(R.map(Re.save))
+  Re.saveAll = R.rsvp.all(R.map(Re.save))
 
   // @sig k -> Object -> v
   Re.get = R.prop;
@@ -8085,16 +8085,16 @@
 
   // @sig a -> b -> Promise(b)
   Re.linkRelated = R.curryN(2, function linkRelated (parent, related) {
-    return rsvp.effect(function (b) {return parent.linkRelated(b)}, related)
+    return R.rsvp.effect(function (b) {return parent.linkRelated(b)}, related)
   });
   // @sig a -> [b] -> PromiseArray([b])
   Re.linkManyRelated = R.curryN(2, function linkManyRelated (theOne, theMany) {
-    return rsvp.map(Re.linkRelated(theOne), theMany)
+    return R.rsvp.map(Re.linkRelated(theOne), theMany)
   });
 
   // @sig String -> a -> b -> Promise(b)
   Re.linkCustomRelated = R.curryN(3, function linkCustomRelated (relatedName, a, b) {
-    return rsvp.effect(function (b) {return a.linkRelated(b, relatedName)}, b)
+    return R.rsvp.effect(function (b) {return a.linkRelated(b, relatedName)}, b)
   });
 
   // @sig String -> a -> PromiseArray([b])

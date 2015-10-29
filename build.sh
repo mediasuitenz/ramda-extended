@@ -8,9 +8,11 @@ NODE="$DIST/node"
 FNAME="ramda-extended.js"
 FNAME_MIN="ramda-extended.min.js"
 
-[ ! -d "$DIST" ] && mkdir "$DIST"
-[ ! -d "$EMBER" ] && mkdir "$EMBER"
-[ ! -d "$NODE" ] && mkdir "$NODE"
+[ -d "$DIST" ] && rm -rf "$DIST"
+
+mkdir "$DIST"
+mkdir "$EMBER"
+mkdir "$NODE"
 
 cp "$SRC/base.js" "$DIST/$FNAME"
 uglifyjs "$DIST/$FNAME" --mangle --keepfnames > "$DIST/$FNAME_MIN"

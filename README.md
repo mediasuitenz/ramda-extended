@@ -1,25 +1,25 @@
 # Ramda (Extended)
 Extend Ramda with extra capabilities, including Ember.js support.
 
-## General Notes
-This package **extends** Ramda by importing Ramda, adding functions to the R namespace, and re-exporting.
+## Overview
+This package **extends** Ramda by importing Ramda, adding functions to the R namespace, and re-exporting the modified R object.
 That means that you do not need to install Ramda separately.
 
 
 ## Using in the browser
-`<script src="bower_components/ramda-extensions/dist/browser-compatible/ramda-extended.js">`
+`<script src="bower_components/ramda-extended/dist/browser-compatible/ramda-extended.js">`
 
 or 
 
-`<script src="bower_components/ramda-extensions/dist/browser-compatible/ramda-extended.min.js">`
+`<script src="bower_components/ramda-extended/dist/browser-compatible/ramda-extended.min.js">`
 
 
 
 ## Using in Node
 
-`npm install --save-dev`
+`npm install --save`
 
-`var R = require('ramda-extensions')`
+`var R = require('ramda-extended')`
 
 
 ## Using with Ember.js
@@ -30,12 +30,12 @@ the regular R functions like `prop` and `pluck` are re-implemented to use Emberj
 check `src/ramda-ember.js` to see if a function has been implemented. If you need a Ramda function
 that has not been ported yet, then please submit a pull request! 
 
-`bower install --save ramda-extensions`
+`bower install --save ramda-extended`
 
 ```
 // Add to ember-cli-build.js or Brocfile.js
 
-app.import(app.bowerDirectory + '/ramda-extensions/dist/ember-compatible/ramda-extended.js')
+app.import(app.bowerDirectory + '/ramda-extended/dist/ember-compatible/ramda-extended.js')
 ```
 
 Ember-compatible mode also adds some new namespaces, namely `rsvp` and `Ember`. These add additional

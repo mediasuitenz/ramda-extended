@@ -8,10 +8,6 @@ BROWSER="$DIST/browser-compatible"
 FNAME="ramda-extended.js"
 FNAME_MIN="ramda-extended.min.js"
 
-echo "$DIST"
-echo "$EMBER"
-echo "$BROWSER"
-
 [ ! -d "$DIST" ] && mkdir "$DIST"
 [ ! -d "$EMBER" ] && mkdir "$EMBER"
 [ ! -d "$BROWSER" ] && mkdir "$BROWSER"

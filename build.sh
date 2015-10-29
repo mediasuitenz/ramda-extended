@@ -1,9 +1,26 @@
 #!/usr/bin/env bash
 
-if [ ! -d "dist" ]
-then
- mkdir "dist"
-fi
+SRC="src"
+DIST="dist"
+EMBER="$DIST/emberjs-compatible"
+BROWSER="$DIST/browser-compatible"
 
-browserify src/index.js -s R > dist/ramda-extensions.js
-uglifyjs dist/ramda-extensions.js --mangle --keepfnames > dist/ramda-extensions.min.js
+FNAME="ramda-extended.js"
+FNAME_MIN="ramda-extended.min.js"
+
+echo "$DIST"
+echo "$EMBER"
+echo "$BROWSER"
+
+[ ! -d "$DIST" ] && mkdir "$DIST"
+[ ! -d "$EMBER" ] && mkdir "$EMBER"
+[ ! -d "$BROWSER" ] && mkdir "$BROWSER"
+
+cp "$SRC/$FNAME" "$DIST/$FNAME"
+uglifyjs "$DIST/$FNAME" --mangle --keepfnames > "$DIST/$FNAME_MIN"
+
+browserify "$SRC/$FNAME" -s R > "$BROWSER/$FNAME"
+uglifyjs "$BROWSER/$FNAME" --mangle --keepfnames > "$BROWSER/$FNAME_MIN"
+
+browserify "$SRC/ramda-ember.js" -s R > "$EMBER/$FNAME"
+uglifyjs "$EMBER/$FNAME" --mangle --keepfnames > "$EMBER/$FNAME_MIN"

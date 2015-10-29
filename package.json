@@ -1,8 +1,8 @@
 {
-  "name": "ramda-extensions",
+  "name": "ramda-extended",
   "version": "1.2.2",
   "description": "Utility belt that extends Ramda.js and Ember.js",
-  "main": "src/ramda-extensions.js",
+  "main": "dist/ramda-extended.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -8157,6 +8157,20 @@
       )(transformations)
     });
 
+    rsvp.promise = function rsvpPromise (fn) {
+      return function () {
+        var args = arguments;
+        return new rsvp.RSVP.Promise(function (resolve, reject) {
+          try {
+            var result = R.apply(fn, args)
+          } catch (err) {
+            console.log('Rejecting:', args)
+            reject(err)
+          }
+          resolve(result)
+        })
+      }
+    }
     // Wraps the result of calling fn in RSVP.all
     rsvp.all = R.curryN(1, function rsvpAll (fn) {
       return R.compose(
@@ -8200,6 +8214,12 @@
     rsvp.effect = R.curryN(2, function rsvpEffect (fn, x) {
       return fn(x).then(R.always(x))
     });
+
+    rsvp.log = rsvp.promise(R.log)
+    rsvp.trace = function (message) {
+      return rsvp.promise(R.trace(message))
+    }
+
 
     return rsvp;
   }

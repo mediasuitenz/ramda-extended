@@ -1,6 +1,6 @@
 {
   "name": "ramda-extended",
-  "main": "index.js",
+  "main": "dist/ramda-extended.js",
   "version": "0.2.1",
   "homepage": "https://github.com/mediasuitenz/ramda-extended",
   "authors": [
@@ -13,7 +13,8 @@
     "node"
   ],
   "keywords": [
-    "ramda"
+    "ramda",
+    "ramda-extended"
   ],
   "license": "MIT",
   "ignore": [

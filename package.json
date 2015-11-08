@@ -2,7 +2,7 @@
   "name": "ramda-extended",
   "version": "0.2.1",
   "description": "Extend Ramda with extra capabilities, including Ember.js support.",
-  "main": "index.js",
+  "main": "./src/ramda-extended.js",
   "scripts": {
     "test": "echo \"Error: no test specified\""
   },
@@ -12,8 +12,7 @@
   },
   "keywords": [
     "ramda",
-    "ember",
-    "emberjs"
+    "ramda-extended"
   ],
   "author": {
     "name": "Patrick Nilsen Walsh",
@@ -31,10 +30,6 @@
     "url": "https://github.com/mediasuitenz/ramda-extended/issues"
   },
   "homepage": "https://github.com/mediasuitenz/ramda-extended#readme",
-  "peerDependencies": {
-    "rsvp": "^3.1.0"
-
-  },
   "devDependencies": {
     "browserify": "^12.0.1",
     "ramda": "^0.18.0",

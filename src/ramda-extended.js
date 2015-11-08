@@ -13,10 +13,6 @@
 
 }(this, function ramdaExtended (R) {
 
-  // hack - have to allow user to define RSVP or Ember.RSVP as the dependency
-  R._addRSVP = function addRSVP (RSVP) {
-    require('./rsvp')(R, RSVP)
-  }
 
   // @sig a -> Boolean
   R.isUndefined = function (x) {return typeof x === 'undefined'};

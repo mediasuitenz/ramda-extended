@@ -10,5 +10,5 @@ FNAME_MIN="ramda-extended.min.js"
 
 mkdir "$DIST"
 
-browserify "$SRC/$FNAME" -s R > "$DIST/ramda-extended.js"
+browserify "$SRC/$FNAME" -s R > "$DIST/$FNAME"
 uglifyjs "$DIST/$FNAME" --mangle --keepfnames > "$DIST/$FNAME_MIN"

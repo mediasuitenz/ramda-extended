@@ -7958,9 +7958,9 @@
 
 }(this, function ramdaExtended (R) {
 
-
   // @sig a -> Boolean
   R.isUndefined = function (x) {return typeof x === 'undefined'};
+  R.isNotUndefined = R.complement(R.isUndefined);
   R.isNotEmpty = R.complement(R.isEmpty);
   R.isNotNil = R.complement(R.isNil);
   R.isEmptyObj = R.compose(R.isEmpty, Object.keys);

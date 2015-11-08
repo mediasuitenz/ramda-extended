@@ -2,9 +2,21 @@
  * A collection of utilities
  */
 
-(function () {
-  var root = this;
-  var R = require('ramda');
+;(function (root, factory) {
+  if (typeof exports === 'object') {
+    module.exports = factory(require('ramda'));
+  } else if (typeof define === 'function' && define.amd) {
+    define(['ramda'], factory);
+  } else {
+    root.R = factory(root.R);
+  }
+
+}(this, function ramdaExtended (R) {
+
+  // hack - have to allow user to define RSVP or Ember.RSVP as the dependency
+  R._addRSVP = function addRSVP (RSVP) {
+    require('./rsvp')(R, RSVP)
+  }
 
   // @sig a -> Boolean
   R.isUndefined = function (x) {return typeof x === 'undefined'};
@@ -55,12 +67,5 @@
     return R.effect(function (val) {console.log(msg, fn(val))});
   };
 
-  if (typeof exports === 'object') {
-    module.exports = R;
-  } else if (typeof define === 'function' && define.amd) {
-    define(function () { return R; });
-  } else {
-    root.R = R;
-  }
-
-}.call(this));
+  return R
+}));

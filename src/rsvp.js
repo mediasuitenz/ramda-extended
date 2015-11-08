@@ -1,19 +1,29 @@
 /**
  * rsvp is a collection promise-enabled control flow functions
  */
-;(function () {
+;(function (root, factory) {
 
+  if (typeof exports === 'object') {
+    module.exports = factory();
+  } else if (typeof define === 'function' && define.amd) {
+    define(factory);
+  } else {
+    throw new Error('Cannot require ramda-extended-rsvp directly. Require `ramda-extended` then call `R._addRSVP()`')
+  }
+
+}(this, function ramdaExtendedRSVP () {
   /**
    * @param R
    * @param {RSVP} RSVP
    * @param {RSVP.hash} RSVP.hash
    * @param {RSVP.all} RSVP.all
    */
-  function rsvp (R, RSVP) {
+  function addRSVPSupport (R, RSVP) {
     const hash = RSVP.hash;
     const all = RSVP.all;
 
     var rsvp = {};
+    R.rsvp = rsvp;
     rsvp.RSVP = RSVP;
 
     rsvp.compose = R.composeP;
@@ -104,16 +114,8 @@
     rsvp.trace = function (message) {
       return rsvp.promise(R.trace(message))
     }
-
-
-    return rsvp;
   }
 
-  if (typeof exports === 'object') {
-    module.exports = rsvp;
-  } else if (typeof define === 'function' && define.amd) {
-    define(function () { return rsvp; });
-  } else {
-    throw new Error('This rsvp library may not be imported directly.')
-  }
-}.call(this));
+  return addRSVPSupport
+
+}));

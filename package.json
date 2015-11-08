@@ -2,7 +2,7 @@
   "name": "ramda-extended",
   "version": "0.2.1",
   "description": "Extend Ramda with extra capabilities, including Ember.js support.",
-  "main": "dist/node/ramda-extended.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\""
   },
@@ -31,10 +31,13 @@
     "url": "https://github.com/mediasuitenz/ramda-extended/issues"
   },
   "homepage": "https://github.com/mediasuitenz/ramda-extended#readme",
+  "peerDependencies": {
+    "rsvp": "^3.1.0"
+
+  },
   "devDependencies": {
     "browserify": "^12.0.1",
     "ramda": "^0.18.0",
-    "rsvp": "^3.1.0",
     "uglify-js": "^2.5.0",
     "xyz": "^0.5.0"
   },

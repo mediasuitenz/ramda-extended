@@ -42,11 +42,9 @@
   // @sig [(a -> b)] -> a -> [b]
   R.juxt = R.flip(R.rmap);
 
+  // Turns out Ramda had this one all along. Just alias it here.
   // @sig a -> a
-  R.effect = R.curryN(2, function effect (fn, x) {
-    fn(x);
-    return x
-  });
+  R.effect = R.tap
 
   // @sig a -> a
   R.log = R.effect(function (val) {console.log(val)});

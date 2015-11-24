@@ -18,7 +18,7 @@
   R.isNotUndefined = R.complement(R.isUndefined);
   R.isNotEmpty = R.complement(R.isEmpty);
   R.isNotNil = R.complement(R.isNil);
-  R.isEmptyObj = R.compose(R.isEmpty, Object.keys);
+  R.isEmptyObj = R.compose(R.isEmpty, R.keys);
   R.isNotEmptyObj = R.complement(R.isEmptyObj);
   R.isNilOrEmpty = R.anyPass([R.isNil, R.isEmpty]);
   R.isNotNilOrEmpty = R.complement(R.isNilOrEmpty);

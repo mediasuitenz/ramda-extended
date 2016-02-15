@@ -39,8 +39,6 @@
   R.rmap = R.curryN(2, function rmap (obj, fns) {
     return R.map(R.applyTo(obj), fns)
   });
-  // @sig [(a -> b)] -> a -> [b]
-  R.juxt = R.flip(R.rmap);
 
   // Turns out Ramda had this one all along. Just alias it here.
   // @sig a -> a

@@ -3,7 +3,7 @@ Extend Ramda with extra capabilities.
 
 This package does the following:
 
-* Bundles Ramda v0.18.0 so you shouldn't install ramda separately
+* Bundles Ramda v0.19.1 so you shouldn't install ramda separately
 * Adds additional helper methods to the global `R` object
 
 ## See Also
